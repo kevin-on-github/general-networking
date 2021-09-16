@@ -1,8 +1,15 @@
+import sys
 import markdown2
 
-with open('DMVPN-iBGP-Lab.md', 'r') as f:
-    text = f.read()
-    html = markdown2.markdown(text)
+try:
+    with open(sys.argv[1], 'r') as f:
+        text = f.read()
+        html = markdown2.markdown(text)
+except:
+    print(f'{sys.argv[1]} file does not exist in current location')
 
-with open('post4-htmloutput.html', 'w') as f:
-    f.write(html)
+try:
+    with open(sys.argv[2], 'w') as f:
+        f.write(html)
+except:
+    print(f'{sys.argv[2]} was unablew to be written. Check permissions and that the location exists.')
